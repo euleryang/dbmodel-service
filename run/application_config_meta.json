@@ -1,50 +1,17 @@
 {
   "keys": "/opt/github/dbmodel-service/config/config.default.js",
-  "view": {
-    "defaultViewEngine": "/opt/github/dbmodel-service/config/config.default.js",
-    "mapping": {
-      ".tpl": "/opt/github/dbmodel-service/config/config.default.js"
-    },
-    "root": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.default.js",
-    "cache": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.default.js",
-    "defaultExtension": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.default.js"
-  },
-  "news": {
-    "pageSize": "/opt/github/dbmodel-service/config/config.default.js",
-    "serverUrl": "/opt/github/dbmodel-service/config/config.default.js"
-  },
-  "middleware": "/opt/github/dbmodel-service/config/config.default.js",
-  "robot": {
-    "ua": "/opt/github/dbmodel-service/config/config.default.js"
-  },
-  "session": {
-    "maxAge": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js",
-    "key": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js",
-    "httpOnly": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js",
-    "encrypt": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js"
-  },
+  "loginTokenTime": "/opt/github/dbmodel-service/config/config.default.js",
   "security": {
+    "csrf": "/opt/github/dbmodel-service/config/config.default.js",
     "domainWhiteList": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
     "protocolWhiteList": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
     "defaultMiddleware": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-    "csrf": {
-      "enable": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "type": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "ignoreJSON": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "useSession": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "cookieName": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "sessionName": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "headerName": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "bodyName": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "queryName": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
-      "refererWhiteList": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js"
-    },
     "xframe": {
       "enable": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
       "value": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js"
     },
     "hsts": {
-      "enable": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
+      "enable": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.local.js",
       "maxAge": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js",
       "includeSubdomains": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js"
     },
@@ -77,6 +44,78 @@
       "checkAddress": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js"
     }
   },
+  "middleware": "/opt/github/dbmodel-service/config/config.default.js",
+  "errors": {
+    "INVALID_PARAM": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "INVALID_AUTH_TOKEN": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "NO_RIGHTS_OPERATION": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "HAS_LOGIN": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "NOT_LOGIN": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "USER_EXIST": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "USER_NOT_FOUND": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "PASSWORD_ERROR": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "CODE_VALIDATE_FAILED": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "TICKET_NOT_FOUND": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "TICKET_IS_USED": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    },
+    "POST_NOT_FOUND": {
+      "code": "/opt/github/dbmodel-service/config/config.default.js",
+      "name": "/opt/github/dbmodel-service/config/config.default.js",
+      "msg": "/opt/github/dbmodel-service/config/config.default.js"
+    }
+  },
+  "robot": {
+    "ua": "/opt/github/dbmodel-service/config/config.local.js"
+  },
+  "session": {
+    "maxAge": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js",
+    "key": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js",
+    "httpOnly": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js",
+    "encrypt": "/opt/github/dbmodel-service/node_modules/egg-session/config/config.default.js"
+  },
   "helper": {
     "shtml": "/opt/github/dbmodel-service/node_modules/egg-security/config/config.default.js"
   },
@@ -99,7 +138,7 @@
     "cookieMaxAge": "/opt/github/dbmodel-service/node_modules/egg-i18n/config/config.default.js"
   },
   "watcher": {
-    "type": "/opt/github/dbmodel-service/node_modules/egg-watcher/config/config.unittest.js",
+    "type": "/opt/github/dbmodel-service/node_modules/egg-watcher/config/config.local.js",
     "eventSources": {
       "default": "/opt/github/dbmodel-service/node_modules/egg-watcher/config/config.default.js",
       "development": "/opt/github/dbmodel-service/node_modules/egg-watcher/config/config.default.js"
@@ -130,6 +169,13 @@
       "cron": "/opt/github/dbmodel-service/node_modules/egg-multipart/config/config.default.js"
     }
   },
+  "development": {
+    "watchDirs": "/opt/github/dbmodel-service/node_modules/egg-development/config/config.default.js",
+    "ignoreDirs": "/opt/github/dbmodel-service/node_modules/egg-development/config/config.default.js",
+    "fastReady": "/opt/github/dbmodel-service/node_modules/egg-development/config/config.default.js",
+    "reloadOnDebug": "/opt/github/dbmodel-service/node_modules/egg-development/config/config.default.js",
+    "overrideDefault": "/opt/github/dbmodel-service/node_modules/egg-development/config/config.default.js"
+  },
   "logrotator": {
     "filesRotateByHour": "/opt/github/dbmodel-service/node_modules/egg-logrotator/config/config.default.js",
     "hourDelimiter": "/opt/github/dbmodel-service/node_modules/egg-logrotator/config/config.default.js",
@@ -147,12 +193,23 @@
     "buffer": "/opt/github/dbmodel-service/node_modules/egg-static/config/config.default.js",
     "maxFiles": "/opt/github/dbmodel-service/node_modules/egg-static/config/config.default.js"
   },
+  "view": {
+    "root": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.default.js",
+    "cache": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.local.js",
+    "defaultExtension": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.default.js",
+    "defaultViewEngine": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.default.js",
+    "mapping": "/opt/github/dbmodel-service/node_modules/egg-view/config/config.default.js"
+  },
   "nunjucks": {
     "autoescape": "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks/config/config.default.js",
     "throwOnUndefined": "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks/config/config.default.js",
     "trimBlocks": "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks/config/config.default.js",
     "lstripBlocks": "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks/config/config.default.js",
-    "cache": "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks/config/config.default.js"
+    "cache": "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks/config/config.local.js"
+  },
+  "jwt": {
+    "secret": "/opt/github/dbmodel-service/node_modules/egg-jwt/config/config.default.js",
+    "enable": "/opt/github/dbmodel-service/node_modules/egg-jwt/config/config.default.js"
   },
   "env": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
   "name": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
@@ -185,6 +242,7 @@
     "homepage": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "dependencies": {
       "egg": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
+      "egg-jwt": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
       "egg-view-nunjucks": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
       "moment": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js"
     },
@@ -231,15 +289,17 @@
     "encoding": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "env": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "level": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
-    "consoleLevel": "/opt/github/dbmodel-service/node_modules/egg/config/config.unittest.js",
+    "consoleLevel": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "disableConsoleAfterReady": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "outputJSON": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
-    "buffer": "/opt/github/dbmodel-service/node_modules/egg/config/config.unittest.js",
+    "buffer": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "appLogName": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "coreLogName": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "agentLogName": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
     "errorLogName": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
-    "coreLogger": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js",
+    "coreLogger": {
+      "consoleLevel": "/opt/github/dbmodel-service/node_modules/egg/config/config.local.js"
+    },
     "allowDebugAtProd": "/opt/github/dbmodel-service/node_modules/egg/config/config.default.js"
   },
   "httpclient": {

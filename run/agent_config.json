@@ -10,18 +10,7 @@
       "domainWhiteList": [],
       "protocolWhiteList": [],
       "defaultMiddleware": "csrf,hsts,methodnoallow,noopen,nosniff,csp,xssProtection,xframe,dta",
-      "csrf": {
-        "enable": true,
-        "type": "ctoken",
-        "ignoreJSON": false,
-        "useSession": false,
-        "cookieName": "csrfToken",
-        "sessionName": "csrfToken",
-        "headerName": "x-csrf-token",
-        "bodyName": "_csrf",
-        "queryName": "_csrf",
-        "refererWhiteList": []
-      },
+      "csrf": false,
       "xframe": {
         "enable": true,
         "value": "SAMEORIGIN"
@@ -117,6 +106,13 @@
         "cron": "0 30 4 * * *"
       }
     },
+    "development": {
+      "watchDirs": [],
+      "ignoreDirs": [],
+      "fastReady": false,
+      "reloadOnDebug": true,
+      "overrideDefault": false
+    },
     "logrotator": {
       "filesRotateByHour": null,
       "hourDelimiter": "-",
@@ -136,23 +132,25 @@
     },
     "view": {
       "root": "/opt/github/dbmodel-service/app/view",
-      "cache": true,
+      "cache": false,
       "defaultExtension": ".html",
-      "defaultViewEngine": "nunjucks",
-      "mapping": {
-        ".tpl": "nunjucks"
-      }
+      "defaultViewEngine": "",
+      "mapping": {}
     },
     "nunjucks": {
       "autoescape": true,
       "throwOnUndefined": false,
       "trimBlocks": false,
       "lstripBlocks": false,
-      "cache": true
+      "cache": false
     },
-    "env": "unittest",
+    "jwt": {
+      "secret": "<String len: 6>",
+      "enable": false
+    },
+    "env": "local",
     "name": "dbmodel-service",
-    "keys": "<String len: 13>",
+    "keys": "<String len: 28>",
     "cookies": {},
     "proxy": false,
     "maxIpsCount": 0,
@@ -182,6 +180,7 @@
       "homepage": "https://github.com/euleryang/dbmodel-service#readme",
       "dependencies": {
         "egg": "^2.26.0",
+        "egg-jwt": "^3.1.7",
         "egg-view-nunjucks": "^2.2.0",
         "moment": "^2.24.0"
       },
@@ -226,17 +225,19 @@
     "logger": {
       "dir": "/opt/github/dbmodel-service/logs/dbmodel-service",
       "encoding": "utf8",
-      "env": "unittest",
+      "env": "local",
       "level": "INFO",
-      "consoleLevel": "WARN",
+      "consoleLevel": "INFO",
       "disableConsoleAfterReady": false,
       "outputJSON": false,
-      "buffer": false,
+      "buffer": true,
       "appLogName": "dbmodel-service-web.log",
       "coreLogName": "egg-web.log",
       "agentLogName": "egg-agent.log",
       "errorLogName": "common-error.log",
-      "coreLogger": {},
+      "coreLogger": {
+        "consoleLevel": "WARN"
+      },
       "allowDebugAtProd": false,
       "type": "agent"
     },
@@ -285,13 +286,70 @@
       "responseTimeout": 60000
     },
     "onClientError": null,
-    "news": {
-      "pageSize": 5,
-      "serverUrl": "https://hacker-news.firebaseio.com/v0"
+    "loginTokenTime": 604800,
+    "middleware": [],
+    "errors": {
+      "INVALID_PARAM": {
+        "code": 1000,
+        "name": "INVALID_PARAM",
+        "msg": "请求参数校验失败"
+      },
+      "INVALID_AUTH_TOKEN": {
+        "code": 1001,
+        "name": "INVALID_PARAM",
+        "msg": "auth_token校验失败"
+      },
+      "NO_RIGHTS_OPERATION": {
+        "code": 1001,
+        "name": "NO_RIGHTS_OPERATION",
+        "msg": "您无权进行此操作"
+      },
+      "HAS_LOGIN": {
+        "code": 2000,
+        "name": "HAS_LOGIN",
+        "msg": "用户账号已登录"
+      },
+      "NOT_LOGIN": {
+        "code": 2001,
+        "name": "NOT_LOGIN",
+        "msg": "用户账号未登录"
+      },
+      "USER_EXIST": {
+        "code": 2002,
+        "name": "USER_EXIST",
+        "msg": "用户已存在"
+      },
+      "USER_NOT_FOUND": {
+        "code": 2003,
+        "name": "USER_NOT_FOUND",
+        "msg": "用户不存在"
+      },
+      "PASSWORD_ERROR": {
+        "code": 2004,
+        "name": "PASSWORD_ERROR",
+        "msg": "账号密码错误"
+      },
+      "CODE_VALIDATE_FAILED": {
+        "code": 2005,
+        "name": "CODE_VALIDATE_FAILED",
+        "msg": "验证码验证失败"
+      },
+      "TICKET_NOT_FOUND": {
+        "code": 2006,
+        "name": "TICKET_NOT_FOUND",
+        "msg": "凭证不存在或过期"
+      },
+      "TICKET_IS_USED": {
+        "code": 2007,
+        "name": "TICKET_IS_USED",
+        "msg": "凭证已使用"
+      },
+      "POST_NOT_FOUND": {
+        "code": 2008,
+        "name": "POST_NOT_FOUND",
+        "msg": "帖子不存在"
+      }
     },
-    "middleware": [
-      "robot"
-    ],
     "robot": {
       "ua": [
         {}
@@ -398,6 +456,21 @@
       "path": "/opt/github/dbmodel-service/node_modules/egg-multipart",
       "version": "2.10.1"
     },
+    "development": {
+      "enable": true,
+      "package": "egg-development",
+      "name": "development",
+      "dependencies": [
+        "watcher"
+      ],
+      "optionalDependencies": [],
+      "env": [
+        "local"
+      ],
+      "from": "/opt/github/dbmodel-service/node_modules/egg/config/plugin.js",
+      "path": "/opt/github/dbmodel-service/node_modules/egg-development",
+      "version": "2.4.3"
+    },
     "logrotator": {
       "enable": true,
       "package": "egg-logrotator",
@@ -447,14 +520,18 @@
       "path": "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks",
       "version": "2.2.0"
     },
-    "egg-mock": {
+    "jwt": {
       "enable": true,
-      "path": "/opt/github/dbmodel-service/node_modules/egg-mock",
-      "name": "egg-mock",
+      "package": "egg-jwt",
+      "name": "jwt",
       "dependencies": [],
-      "optionalDependencies": [],
+      "optionalDependencies": [
+        "onerror"
+      ],
       "env": [],
-      "version": "4.0.0"
+      "from": "/opt/github/dbmodel-service/config/plugin.js",
+      "path": "/opt/github/dbmodel-service/node_modules/egg-jwt",
+      "version": "3.1.7"
     }
   }
 }
