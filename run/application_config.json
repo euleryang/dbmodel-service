@@ -95,6 +95,7 @@
         "/opt/github/dbmodel-service/node_modules/egg-view/config/locales",
         "/opt/github/dbmodel-service/node_modules/egg-view-nunjucks/config/locales",
         "/opt/github/dbmodel-service/node_modules/egg-jwt/config/locales",
+        "/opt/github/dbmodel-service/lib/plugin/egg-ua/config/locales",
         "/opt/github/dbmodel-service/node_modules/egg/config/locales",
         "/opt/github/dbmodel-service/config/locales"
       ],
@@ -583,6 +584,15 @@
       "from": "/opt/github/dbmodel-service/config/plugin.js",
       "path": "/opt/github/dbmodel-service/node_modules/egg-jwt",
       "version": "3.1.7"
+    },
+    "ua": {
+      "enable": true,
+      "path": "/opt/github/dbmodel-service/lib/plugin/egg-ua",
+      "name": "ua",
+      "dependencies": [],
+      "optionalDependencies": [],
+      "env": [],
+      "from": "/opt/github/dbmodel-service/config/plugin.js"
     }
   }
 }
